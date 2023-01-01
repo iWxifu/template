@@ -105,3 +105,6 @@ dist
 
 # Remove SWC Build Output
 build/
+
+# Yarn Lockfile
+yarn.lock
