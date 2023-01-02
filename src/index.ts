@@ -1,5 +1,5 @@
 import { Client, Collection, PermissionFlagsBits } from "discord.js"
-import { SlashCommand } from "./types"
+import { Modal, SlashCommand } from "./types"
 import { config } from "dotenv"
 import { readdirSync } from "fs";
 import { join } from "path";
@@ -9,6 +9,7 @@ const client = new Client({ intents: 3276799 });
 
 client.slashCommands = new Collection<string, SlashCommand>()
 client.cooldowns = new Collection<string, number>();
+client.modals = new Collection<string, Modal>();
 
 const handlersDir = join(__dirname,"./handlers");
 readdirSync(handlersDir).forEach(handler => {

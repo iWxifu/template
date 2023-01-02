@@ -1,4 +1,4 @@
-import { ChatInputCommandInteraction, Client, Collection, SlashCommandBuilder } from "discord.js";
+import { ChatInputCommandInteraction, Client, Collection, ModalSubmitInteraction, SlashCommandBuilder } from "discord.js";
 
 export interface SlashCommand {
     command: SlashCommandBuilder | any,
@@ -11,6 +11,12 @@ export interface BotEvent {
     once?: boolean | false,
     rest?: boolean | false,
     execute: (...args?) => void,
+}
+
+export interface Modal {
+    id: string,
+    execute: (Interaction: ModalSubmitInteraction, client: Client) => void,
+    cooldown?: number,
 }
 
 // --- System
@@ -28,5 +34,6 @@ declare module "discord.js" {
     export interface Client {
         slashCommands: Collection<string, SlashCommand>,
         cooldowns: Collection<string, number>,
+        modals: Collection<string, Modal>
     }
 }
