@@ -19,6 +19,12 @@ export interface Modal {
     cooldown?: number,
 }
 
+export interface Button {
+    id: string,
+    execute: (Interaction: ButtonInteraction, client: Client) => void,
+    cooldown?: number
+}
+
 // --- System
 declare global {
     namespace NodeJS {
@@ -34,6 +40,7 @@ declare module "discord.js" {
     export interface Client {
         slashCommands: Collection<string, SlashCommand>,
         cooldowns: Collection<string, number>,
-        modals: Collection<string, Modal>
+        modals: Collection<string, Modal>,
+        buttons: Collection<string, Button>
     }
 }
