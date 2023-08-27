@@ -1,7 +1,7 @@
 import { Client } from "discord.js";
 import { readdirSync } from "fs";
 import { join } from "path";
-import { logger } from "../helpers/logging";
+import logger from "../helpers/logging";
 import { BotEvent } from "../types";
 
 module.exports = (client: Client) => {
@@ -18,8 +18,10 @@ module.exports = (client: Client) => {
 
             event.rest ?
                 event.once ?
+                // @ts-ignore
                     client.rest.once(event.name, (...args) => event.execute(...args, client))
                     :
+                    // @ts-ignore
                     client.rest.on(event.name, (...args) => event.execute(...args, client))
                 :
                 event.once ?
@@ -30,5 +32,5 @@ module.exports = (client: Client) => {
         })
     })
 
-    logger.startup(`Successfully loaded ${eventNames.length} events!`);
+    logger.info(`Successfully loaded ${eventNames.length} events!`);
 }

@@ -1,7 +1,7 @@
 import { Client } from "discord.js";
 import { readdir, readdirSync } from "fs";
 import { join } from "path";
-import { logger } from "../helpers/logging";
+import logger from "../helpers/logging";
 import { Modal } from "../types";
 
 module.exports = (client: Client) => {
@@ -18,5 +18,5 @@ module.exports = (client: Client) => {
         })
     })
 
-    logger.startup(`Successfully loaded ${client.modals.size} Modal(s)!`);
+    logger.info(`Successfully loaded ${client.modals.size} Modal(s)!`);
 }

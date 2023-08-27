@@ -1,46 +1,14 @@
-import { Signale } from "signale-logger";
+import * as bunyan from 'bunyan';
 
-const figureSet = require('figures')
-
-const logger = new Signale({
-    disabled: false,
-    interactive: false,
-    logLevel: "info",
-    scope: 'Name', // Bot / Project Name
-    secrets: [],
-    stream: process.stdout,
-    types: {
-        success: {
-            badge: figureSet.heart,
-            color: 'green',
-            label: 'success',
-            logLevel: 'info'
-        },
-        error: {
-            badge: figureSet.cross,
-            color: 'red',
-            label: 'error',
-            logLevel: 'error'
-        },
-        api: {
-            badge: figureSet.star,
-            color: 'magenta',
-            label: 'api',
-            logLevel: 'info'
-        },
-        startup: {
-            badge: figureSet.pointer,
-            color: 'cyan',
-            label: 'startup',
-            logLevel: 'info'
-        },
-        database: {
-            badge: figureSet.squareSmall,
-            color: "yellow",
-            label: "database",
-            logLevel: 'info'
+const logger = bunyan.createLogger({
+    name: 'Bot', // Change this lol
+    level: 'info',
+    streams: [
+        {
+            stream: process.stdout, // log to console
+            level: 'info'
         }
-    }
-});
+    ]
+})
 
-export { logger }
+export default logger;

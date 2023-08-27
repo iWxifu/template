@@ -1,7 +1,7 @@
 import { Client, REST, Routes, SlashCommandBuilder } from "discord.js";
 import { readdirSync } from "fs";
 import { join } from "path";
-import { logger } from "../helpers/logging";
+import logger from "../helpers/logging";
 import { SlashCommand } from "../types";
 
 module.exports = async (client : Client) => {
@@ -25,7 +25,7 @@ module.exports = async (client : Client) => {
         body: commands.map(command => command.toJSON())
     })
     .then((data : any) => {
-       logger.startup(`Successfully loaded ${data.length} command(s)!`);
+       logger.info(`Successfully loaded ${data.length} command(s)!`);
     }).catch(e => {
         logger.error(e)
     })

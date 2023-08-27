@@ -2,7 +2,7 @@
 import { Client } from "discord.js";
 import { readdirSync } from "fs";
 import { join } from "path";
-import { logger } from "../helpers/logging";
+import logger from "../helpers/logging";
 import { Button } from "../types";
 
 
@@ -22,5 +22,5 @@ module.exports = (client: Client) => {
         })
     })
 
-    logger.startup(`Successfully loaded ${client.buttons.size} buttons!`)
+    logger.info(`Successfully loaded ${client.buttons.size} buttons!`)
 }
